@@ -28,7 +28,7 @@ data_from_source = (p
  | 'Map record to 1' >> beam.Map(lambda record: (record, 1))
  | 'GroupBy the data' >> beam.GroupByKey()
  | 'Get the total in each day' >> beam.ParDo(GetTotal())
- | 'Print the date' >> beam.ParDo(Printer())
+ | 'Export results to new file' >> WriteToText( 'c:\datasets\out_day-list','.txt')
  )
 
 result = p.run()
